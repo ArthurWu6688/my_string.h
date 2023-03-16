@@ -12,3 +12,4 @@ char* my_strncat(char* dest, char* src, int n);
 int my_strncmp(char* str1, char* str2, int n);
 const char* my_strchr(const char* str, char ch);
 const char* my_strstr(const char* str1, char* str2);
+char* my_strtok(char* str, char* sep);

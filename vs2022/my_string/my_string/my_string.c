@@ -95,8 +95,9 @@ const char* my_strchr(const char* src, char ch) {
 
 const char* my_strstr(const char* str1, char* str2) {
 	while (*str1 != '\0') {
-		const char* s1 = str1;//str1保存当前遍历的位置
-		char* s2 = str2;
+		const char* s1 = str1;//str1保存当前遍历的位置，让s1也指向这个位置
+		char* s2 = str2;//让s2指向str2起始位置
+		//进行相同判断的时候用s1和s2是为了避免丢失str2的起始地址
 		//从s1开始如果相同，则连续进行字符比较
 		while (*s1 != '\0' && *s2 != '\0' && *s1 == *s2) {
 			//跳出循环的时候要不就是s1s2指向的字符不同，要不就是s1或者s2走到结尾了
@@ -110,4 +111,32 @@ const char* my_strstr(const char* str1, char* str2) {
 		++str1;//当前位置字符与查找字符串起始位置字符不同，则向后移动，进行下一个字符的判断
 	}
 	return NULL;
+}
+
+char* my_strtok(char* str, char* sep) {
+	static char* start;
+	if (str != NULL) {
+		start = str;//如果外界传入的不是空，则保存传入字符串的起始地址
+	}
+	char* ptr = start;
+	char* res = start;
+	if (*start == '\0')
+		return NULL;//当某一次分割时发现start已经到达了字符串末尾，则返回NULL
+	while (*ptr != '\0') {
+		for (int i = 0; sep[i] != '\0'; ++i) {
+			if (*ptr == sep[i]) {
+				if (ptr == start) {//当前start所指位置就是一个间隔符
+					start = ptr + 1;
+					res = start;//重置ptr和res的值，然后从下一个位置重新查找间隔符
+					break;
+				}
+				*ptr = '\0';//将间隔符替换为字符串结尾标志
+				start = ptr + 1;//让start指向当前间隔符下一个位置
+				return res;//返回本次子串的起始地址
+			}
+		}
+		++ptr;
+	}
+	start = ptr;//当跳出循环意味着ptr走到了结尾处,意味着字符串扫面完了，要将start设置为末尾
+	return res;
 }

@@ -36,11 +36,20 @@ int main() {
 	const char* ret = my_strchr(s1, 'e');
 	printf("%s", ret);*/
 
-	char* s1 = "hello nihaoa xiaoming";
+	/*char* s1 = "hello nihaoa xiaoming";
 	char* s2 = "nihaoa";
 	const char* ret = my_strstr(s1, s2);
-	printf("%s", ret);
+	printf("%s", ret);*/
 
+	char str[] = "ni hao,peng  , .     you!!";
+	char* ptr = my_strtok(str, " ");
+
+	if (ptr != NULL)
+		printf("[%s]\n", ptr);
+
+	while ((ptr = my_strtok(NULL, ",. ")) != NULL) {
+		printf("[%s]\n", ptr);
+	}
 
 	return 0;
 }
