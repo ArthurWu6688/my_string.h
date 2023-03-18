@@ -13,3 +13,6 @@ int my_strncmp(char* str1, char* str2, int n);
 const char* my_strchr(const char* str, char ch);
 const char* my_strstr(const char* str1, char* str2);
 char* my_strtok(char* str, char* sep);
+void my_memset(void* base, unsigned char val, size_t len);
+void* my_memcpy(void* dest, void* src, size_t len);
+void* my_memmove(void* dest, void* src, size_t len);

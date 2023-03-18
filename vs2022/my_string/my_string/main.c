@@ -41,7 +41,7 @@ int main() {
 	const char* ret = my_strstr(s1, s2);
 	printf("%s", ret);*/
 
-	char str[] = "ni hao,peng  , .     you!!";
+	/*char str[] = "ni hao,peng  , .     you!!";
 	char* ptr = my_strtok(str, " ");
 
 	if (ptr != NULL)
@@ -49,7 +49,20 @@ int main() {
 
 	while ((ptr = my_strtok(NULL, ",. ")) != NULL) {
 		printf("[%s]\n", ptr);
-	}
+	}*/
+
+	/*char buf[32] = "ni hao,peng  , .     you!!";
+	my_memset(buf, 0x00, 32);*/
+
+	/*char buf[32] = "ni hao,peng  , .     you!!";
+	char dat[32];
+
+	char* ret = my_memcpy(dat, buf, 32);*/
+
+	char buf[32] = "helloworld,pengyou!!";
+	my_memmove(buf, buf + 6, 10);
+	printf("%s\n", buf);
+
 
 	return 0;
 }

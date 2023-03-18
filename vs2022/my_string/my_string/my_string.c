@@ -140,3 +140,33 @@ char* my_strtok(char* str, char* sep) {
 	start = ptr;//当跳出循环意味着ptr走到了结尾处,意味着字符串扫面完了，要将start设置为末尾
 	return res;
 }
+
+void my_memset(void* base, unsigned char val, size_t len) {
+	while (len>0) {
+		*((char*)base + len - 1) = val;//len个字节下标是从0~len-1
+		len--;
+	}
+	return;
+}
+
+void* my_memcpy(void* dest, void* src, size_t len) {
+	for (int i = 0; i < (int)len; ++i) {
+		*((char*)dest + i) = *((char*)src + i);
+	}
+	return dest;
+}
+
+void* my_memmove(void* dest, void* src, size_t len) {
+	if (dest > src && (char*)dest < (char*)src + len) {
+		//dest刚好在src拷贝起始位置和src+len拷贝结束位置之间，需要从后往前拷贝避免数据覆盖
+		while (len-- > 0) {
+			*((char*)dest + len) = *((char*)src + len);
+		}
+	}
+	else {
+		for (int i = 0; i < (int)len; ++i) {
+			*((char*)dest + i) = *((char*)src + i);
+		}
+	}
+	return dest;
+}
